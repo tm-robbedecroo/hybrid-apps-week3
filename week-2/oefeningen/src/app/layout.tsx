@@ -15,9 +15,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body
         className={cn(
-          "antialiased bg-background text-foreground font-sans scroll-smooth",
+          "scroll-smooth bg-background font-sans text-foreground antialiased",
           fontSans.variable,
-          fontMono.variable
+          fontMono.variable,
         )}
       >
         {children}
