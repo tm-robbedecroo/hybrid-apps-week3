@@ -3,7 +3,7 @@
 ## Ga naar de oefeningen map
 
 ```
-cd week-1/oplossingen
+cd week-2/oplossingen
 ```
 
 ## Dependencies installeren
