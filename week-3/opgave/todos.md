@@ -20,7 +20,7 @@ Om deze oefening te kunnen maken heb je een nieuwe database nodig. Je kan deze m
 - Als laatste kies je **week-3-db** als database name
 - Klik op **Create** om de database te maken
 - Kopieer de **Database URL** en sla deze op in je `.env-example` file
-- Hernoem je `.env-example` file naar `.env`
+- Hernoem je `example-.env` file naar `.env`
 
 &nbsp;
 &nbsp;
