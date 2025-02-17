@@ -1,31 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { addTodo, deleteCompleted, deleteTodo, toggleTodo } from "@/db/actions";
+import { db } from "@/db/client";
+import { todos } from "@/db/schema";
+import { asc } from "drizzle-orm";
 import { CheckIcon, PlusIcon, TrashIcon } from "lucide-react";
 
-const items = [
-  {
-    id: "1",
-    title: "Task 1",
-    completed: false,
-  },
-  {
-    id: "2",
-    title: "Task 2",
-    completed: true,
-  },
-  {
-    id: "3",
-    title: "Task 3",
-    completed: false,
-  },
-];
-
 export default async function Component() {
+
+  const items = await db.select().from(todos).orderBy(todos.completed, asc(todos));
+
   return (
     <main className="flex min-h-screen justify-center p-10">
       <div className="w-full max-w-lg space-y-4">
-        <form className="flex items-center space-x-2">
+        <form className="flex items-center space-x-2" action={addTodo}>
           <Input type="text" placeholder="Add new task" name="title" className="flex-1" required />
           <Button type="submit" size="icon">
             <PlusIcon />
@@ -45,12 +34,12 @@ export default async function Component() {
 
                 <div className="flex gap-x-3">
                   {!completed && (
-                    <Button size="icon" variant="outline">
+                    <Button size="icon" variant="outline" formAction={toggleTodo}>
                       <CheckIcon />
                     </Button>
                   )}
 
-                  <Button size="icon" variant="destructive">
+                  <Button size="icon" variant="destructive" formAction={deleteTodo}>
                     <TrashIcon />
                   </Button>
                 </div>
@@ -59,7 +48,7 @@ export default async function Component() {
           ))}
         </div>
 
-        <form>
+        <form action={deleteCompleted}>
           <Button variant="outline" className="w-full">
             Delete completed
           </Button>
